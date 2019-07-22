@@ -43,11 +43,15 @@ public class ShareModule extends ReactContextBaseJavaModule {
       return "ReactNativeShareExtension";
   }
 
-  @ReactMethod
-  public void close() {
-    getCurrentActivity().finish();
-  }
+//  @ReactMethod
+//  public void close() {
+//    getCurrentActivity().finish();
+//  }
 
+    @ReactMethod
+     public  void close() {
+        android.os.Process.killProcess(android.os.Process.myPid());
+     }
   @ReactMethod
   public void data(Promise promise) {
       promise.resolve(processIntent());
