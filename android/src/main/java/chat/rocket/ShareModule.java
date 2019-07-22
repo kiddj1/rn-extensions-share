@@ -14,6 +14,9 @@ import android.content.Intent;
 import android.net.Uri;
 
 import android.graphics.Bitmap;
+import android.util.Log;
+import android.widget.Toast;
+
 import java.io.InputStream;
 
 import java.io.File;
@@ -84,14 +87,15 @@ public class ShareModule extends ReactContextBaseJavaModule {
                 if (uri != null) {
                     text = "file://" + RealPathUtil.getRealPathFromURI(currentActivity, uri);
                     map.putString("value", text);
-
-                    if (type.equals("image/*")) {
+//                    Toast.makeText(getReactApplicationContext(), type, Toast.LENGTH_LONG).show();
+//                    Log.d("STATEVU", type);
+                    if ("image/*".equals(type) || "image/jpeg".equals(type) || "image/png".equals(type) || "image/jpg".equals(type) ) {
                         type = "image/jpeg";
                     } else if (type.equals("video/*")) {
                         type = "video/mp4";
                     }
 
-                    map.putString("type", "media");
+                    map.putString("type", type);
                 }
             }
         }
